@@ -1,9 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://bqsltq8ov8223"]
+[gd_scene load_steps=5 format=3 uid="uid://c6mp2krjan05d"]
 
-[ext_resource type="Script" uid="uid://v6w4ajyk5hi7" path="res://Trigger/trigger.gd" id="1_cao70"]
+[ext_resource type="Script" uid="uid://6jilldqua3gk" path="res://Tutorial_completo/Trigger/triggerH.gd" id="1_c4sfi"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_of3ke"]
-height = 15.0
+height = 20.0
 radius = 1.5
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_of3ke"]
@@ -25,15 +25,17 @@ distance_fade_max_distance = 38.5
 material = SubResource("StandardMaterial3D_of3ke")
 top_radius = 1.5
 bottom_radius = 1.5
-height = 18.0
+height = 20.0
 
-[node name="Trigger" type="Area3D"]
-script = ExtResource("1_cao70")
+[node name="TriggerH" type="Area3D"]
+script = ExtResource("1_c4sfi")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
 shape = SubResource("CylinderShape3D_of3ke")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("CylinderMesh_xxkvx")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

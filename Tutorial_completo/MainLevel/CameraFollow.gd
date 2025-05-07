@@ -1,7 +1,7 @@
 extends Camera3D
 
 @onready var player: CharacterBody3D = $"../Player"
-
+@onready var center: Node3D = $"../Center"
 
 func _process(delta: float) -> void:
-	look_at((Vector3(player.global_position))*0.04 + Vector3(0,9,0))
+	look_at(player.global_position * 0.1 + center.global_position)

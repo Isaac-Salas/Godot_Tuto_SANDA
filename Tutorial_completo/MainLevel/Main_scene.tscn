@@ -1,0 +1,176 @@
+[gd_scene load_steps=18 format=3 uid="uid://cmklh5ifakw10"]
+
+[ext_resource type="Script" uid="uid://b1l030crwdike" path="res://Tutorial_completo/MainLevel/main.gd" id="1_2i5ab"]
+[ext_resource type="PackedScene" uid="uid://c6mp2krjan05d" path="res://Tutorial_completo/Trigger/triggerH.tscn" id="2_hlr47"]
+[ext_resource type="Script" uid="uid://cddhuti42ixwq" path="res://Tutorial_completo/MainLevel/CameraFollow.gd" id="3_x6mtg"]
+[ext_resource type="PackedScene" uid="uid://b286rdft4msb3" path="res://Tutorial_completo/Player/Player.tscn" id="4_j84c4"]
+[ext_resource type="Script" uid="uid://cit3uhdnwmrbd" path="res://Tutorial_completo/MainLevel/LightFollow.gd" id="5_ebu0q"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_resii"]
+size = Vector3(1, 18, 5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_resii"]
+albedo_color = Color(0.164706, 0.235294, 0.176471, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_resii"]
+material = SubResource("StandardMaterial3D_resii")
+size = Vector3(1, 18, 5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xxkvx"]
+albedo_color = Color(0.164706, 0.235294, 0.176471, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_7s8pb"]
+material = SubResource("StandardMaterial3D_xxkvx")
+size = Vector3(30, 4, 5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_of3ke"]
+size = Vector3(20, 1, 5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7s8pb"]
+albedo_color = Color(0.117647, 0.129412, 0.168627, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_of3ke"]
+material = SubResource("StandardMaterial3D_7s8pb")
+size = Vector3(30, 4, 5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xxkvx"]
+size = Vector3(20, 1, 5)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_resii"]
+sky_top_color = Color(0.3468, 0.4284, 0.51, 1)
+sky_horizon_color = Color(1, 0.517647, 0.152941, 1)
+sky_curve = 0.0284198
+ground_bottom_color = Color(0.1392, 0.29, 0.164333, 1)
+ground_horizon_color = Color(1, 0.784314, 0, 1)
+ground_curve = 0.00341509
+ground_energy_multiplier = 0.9
+sun_angle_max = 7.78
+sun_curve = 0.764738
+
+[sub_resource type="Sky" id="Sky_7s8pb"]
+sky_material = SubResource("ProceduralSkyMaterial_resii")
+
+[sub_resource type="Environment" id="Environment_of3ke"]
+background_mode = 2
+sky = SubResource("Sky_7s8pb")
+sky_custom_fov = 20.8
+sky_rotation = Vector3(-0.0523599, 0, 0)
+glow_enabled = true
+glow_normalized = true
+glow_bloom = 0.02
+volumetric_fog_density = 0.0087
+volumetric_fog_anisotropy = 0.11
+volumetric_fog_length = 126.33
+volumetric_fog_detail_spread = 3.13834
+volumetric_fog_sky_affect = 0.174
+
+[node name="Tutorial" type="Node3D"]
+script = ExtResource("1_2i5ab")
+
+[node name="Walls" type="StaticBody3D" parent="."]
+
+[node name="RightWall" type="CollisionShape3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.5, 9, 0)
+shape = SubResource("BoxShape3D_resii")
+
+[node name="RightMesh" type="MeshInstance3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.5, 9, 0)
+mesh = SubResource("BoxMesh_resii")
+
+[node name="LeftWall" type="CollisionShape3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5031, 9, 0)
+shape = SubResource("BoxShape3D_resii")
+
+[node name="LeftMesh" type="MeshInstance3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5031, 9, 0)
+mesh = SubResource("BoxMesh_resii")
+
+[node name="Ceiling" type="StaticBody3D" parent="."]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 0, 18, 0)
+
+[node name="CeilingMesh" type="MeshInstance3D" parent="Ceiling"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
+mesh = SubResource("BoxMesh_7s8pb")
+skeleton = NodePath("../../Walls")
+
+[node name="CeilingShape" type="CollisionShape3D" parent="Ceiling"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.048, -0.5, 0)
+shape = SubResource("BoxShape3D_of3ke")
+
+[node name="Floor" type="StaticBody3D" parent="."]
+
+[node name="FloorMesh" type="MeshInstance3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
+mesh = SubResource("BoxMesh_of3ke")
+skeleton = NodePath("../../Walls")
+
+[node name="FloorShape" type="CollisionShape3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("BoxShape3D_xxkvx")
+
+[node name="Center" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9, 0)
+
+[node name="TriggerV" parent="Center" instance=ExtResource("2_hlr47")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6.5156)
+
+[node name="TriggerH" parent="Center" instance=ExtResource("2_hlr47")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6.5156)
+type = 1
+
+[node name="TriggerV2" parent="Center" instance=ExtResource("2_hlr47")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6.5156)
+
+[node name="TriggerH2" parent="Center" instance=ExtResource("2_hlr47")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6.5156)
+type = 1
+
+[node name="Player" parent="." instance=ExtResource("4_j84c4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.90434, 0)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9, 39.796)
+fov = 30.0
+script = ExtResource("3_x6mtg")
+
+[node name="UI" type="Control" parent="Camera3D"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="Camera3D/UI"]
+layout_mode = 0
+offset_left = 23.0
+offset_top = 20.0
+offset_right = 240.0
+offset_bottom = 89.0
+theme_override_font_sizes/font_size = 50
+text = "Score = 0"
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.999905, -0.0138051, 0, 0.0138051, -0.999905, 0, 0, -37.8509)
+light_color = Color(1, 0.517647, 0.152941, 1)
+shadow_enabled = true
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9, 12.2104)
+light_color = Color(1, 0.760784, 0.576471, 1)
+light_energy = 4.0
+light_indirect_energy = 2.524
+shadow_enabled = true
+spot_range = 67.5764
+spot_angle = 35.8551
+script = ExtResource("5_ebu0q")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_of3ke")
+
+[connection signal="deSpawn" from="Center/TriggerV" to="." method="add_point"]
+[connection signal="gameOver" from="Center/TriggerV" to="." method="reset"]
+[connection signal="deSpawn" from="Center/TriggerH" to="." method="add_point"]
+[connection signal="gameOver" from="Center/TriggerH" to="." method="reset"]
+[connection signal="deSpawn" from="Center/TriggerV2" to="." method="add_point"]
+[connection signal="gameOver" from="Center/TriggerV2" to="." method="reset"]
+[connection signal="deSpawn" from="Center/TriggerH2" to="." method="add_point"]
+[connection signal="gameOver" from="Center/TriggerH2" to="." method="reset"]
