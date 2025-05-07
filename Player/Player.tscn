@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://b286rdft4msb3"]
 
-[ext_resource type="Script" uid="uid://fq45lsl1d30u" path="res://Player/player.gd" id="1_3qydi"]
+[ext_resource type="Script" uid="uid://bd616r3ydt5t0" path="res://Player/player.gd" id="1_3qydi"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_resii"]
 radius = 1.5
@@ -25,7 +25,7 @@ material = SubResource("StandardMaterial3D_of3ke")
 radius = 1.5
 height = 3.0
 
-[node name="CharacterBody3D" type="CharacterBody3D"]
+[node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_3qydi")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

@@ -1,6 +1,9 @@
-[gd_scene load_steps=19 format=3 uid="uid://cmklh5ifakw10"]
+[gd_scene load_steps=18 format=3 uid="uid://cmklh5ifakw10"]
 
-[ext_resource type="Script" uid="uid://cit3uhdnwmrbd" path="res://Escenario/LightFollow.gd" id="1_of3ke"]
+[ext_resource type="Script" uid="uid://c5i8yvylmgh1d" path="res://Escenario/tutorial.gd" id="1_hbjj4"]
+[ext_resource type="Script" uid="uid://cvcrxp2ygsxfk" path="res://Escenario/LightFollow.gd" id="1_of3ke"]
+[ext_resource type="PackedScene" uid="uid://bqsltq8ov8223" path="res://Trigger/trigger.tscn" id="1_uv8d1"]
+[ext_resource type="Script" uid="uid://mj03t3dh25dc" path="res://Escenario/CameraFollow.gd" id="1_xxkvx"]
 [ext_resource type="PackedScene" uid="uid://b286rdft4msb3" path="res://Player/Player.tscn" id="2_xxkvx"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_resii"]
@@ -61,42 +64,8 @@ size = Vector3(30, 4, 5)
 [sub_resource type="BoxShape3D" id="BoxShape3D_of3ke"]
 size = Vector3(20, 1, 5)
 
-[sub_resource type="GDScript" id="GDScript_of3ke"]
-script/source = "extends Camera3D
-
-@onready var player: CharacterBody3D = $\"../Player\"
-
-
-func _process(delta: float) -> void:
-	look_at((Vector3(player.global_position))*0.04 + Vector3(0,9,0))
-"
-
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_of3ke"]
-height = 20.0
-radius = 1.5
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_of3ke"]
-albedo_color = Color(1, 0.784314, 0, 1)
-metallic_specular = 0.18
-roughness = 0.0
-emission_enabled = true
-emission = Color(0.41, 0.321167, 0, 1)
-clearcoat = 0.0
-clearcoat_roughness = 1.0
-ao_light_affect = 0.35
-refraction_scale = 1.0
-proximity_fade_distance = 30.5
-distance_fade_mode = 2
-distance_fade_min_distance = 36.0
-distance_fade_max_distance = 40.0
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_xxkvx"]
-material = SubResource("StandardMaterial3D_of3ke")
-top_radius = 1.5
-bottom_radius = 1.5
-height = 20.0
-
 [node name="Tutorial" type="Node3D"]
+script = ExtResource("1_hbjj4")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_of3ke")
@@ -130,6 +99,15 @@ skeleton = NodePath("../../Walls")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 shape = SubResource("BoxShape3D_xxkvx")
 
+[node name="Center" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9, 0)
+
+[node name="Trigger" parent="Center" instance=ExtResource("1_uv8d1")]
+
+[node name="Trigger2" parent="Center" instance=ExtResource("1_uv8d1")]
+
+[node name="Trigger3" parent="Center" instance=ExtResource("1_uv8d1")]
+
 [node name="Ceiling" type="StaticBody3D" parent="."]
 transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 0, 18, 0)
 
@@ -145,7 +123,7 @@ shape = SubResource("BoxShape3D_of3ke")
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9, 39.796)
 fov = 30.0
-script = SubResource("GDScript_of3ke")
+script = ExtResource("1_xxkvx")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9, 14.6025)
@@ -167,12 +145,6 @@ transform = Transform3D(1, 0, 0, 0, -0.999905, -0.0138051, 0, 0.0138051, -0.9999
 light_color = Color(1, 0.517647, 0.152941, 1)
 shadow_enabled = true
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
-shape = SubResource("CylinderShape3D_of3ke")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.929958, 0.495598, 1.16344)
-mesh = SubResource("CylinderMesh_xxkvx")
+[connection signal="gameOver" from="Center/Trigger" to="." method="reset"]
+[connection signal="gameOver" from="Center/Trigger2" to="." method="reset"]
+[connection signal="gameOver" from="Center/Trigger3" to="." method="reset"]
