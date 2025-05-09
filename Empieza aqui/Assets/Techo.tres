@@ -1,0 +1,8 @@
+[gd_resource type="BoxMesh" load_steps=2 format=3 uid="uid://dbed36rb4r4ob"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xxkvx"]
+albedo_color = Color(0.164706, 0.235294, 0.176471, 1)
+
+[resource]
+material = SubResource("StandardMaterial3D_xxkvx")
+size = Vector3(30, 4, 5)

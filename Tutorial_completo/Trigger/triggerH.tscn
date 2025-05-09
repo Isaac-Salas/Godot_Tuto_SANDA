@@ -1,31 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://c6mp2krjan05d"]
+[gd_scene load_steps=4 format=3 uid="uid://c6mp2krjan05d"]
 
-[ext_resource type="Script" uid="uid://6jilldqua3gk" path="res://Tutorial_completo/Trigger/triggerH.gd" id="1_c4sfi"]
+[ext_resource type="Script" uid="uid://b84k6xmj1gyiv" path="res://Tutorial_completo/Trigger/triggerH.gd" id="1_c4sfi"]
+[ext_resource type="CylinderMesh" uid="uid://b40j5ybvmowgh" path="res://Empieza aqui/Assets/Palo.tres" id="2_vdsck"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_of3ke"]
 height = 20.0
 radius = 1.5
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_of3ke"]
-albedo_color = Color(1, 0.784314, 0, 1)
-metallic_specular = 0.18
-roughness = 0.0
-emission_enabled = true
-emission = Color(0.41, 0.321167, 0, 1)
-clearcoat = 0.0
-clearcoat_roughness = 1.0
-ao_light_affect = 0.35
-refraction_scale = 1.0
-proximity_fade_distance = 30.5
-distance_fade_mode = 2
-distance_fade_min_distance = 36.0
-distance_fade_max_distance = 38.5
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_xxkvx"]
-material = SubResource("StandardMaterial3D_of3ke")
-top_radius = 1.5
-bottom_radius = 1.5
-height = 20.0
 
 [node name="TriggerH" type="Area3D"]
 script = ExtResource("1_c4sfi")
@@ -36,6 +16,6 @@ shape = SubResource("CylinderShape3D_of3ke")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
-mesh = SubResource("CylinderMesh_xxkvx")
+mesh = ExtResource("2_vdsck")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

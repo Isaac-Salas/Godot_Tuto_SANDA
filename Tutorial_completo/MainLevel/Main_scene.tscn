@@ -1,37 +1,19 @@
-[gd_scene load_steps=18 format=3 uid="uid://cmklh5ifakw10"]
+[gd_scene load_steps=15 format=3 uid="uid://cmklh5ifakw10"]
 
-[ext_resource type="Script" uid="uid://b1l030crwdike" path="res://Tutorial_completo/MainLevel/main.gd" id="1_2i5ab"]
+[ext_resource type="Script" uid="uid://baofckf3yhvb5" path="res://Tutorial_completo/MainLevel/main.gd" id="1_2i5ab"]
+[ext_resource type="BoxMesh" uid="uid://bnjxhv5xromj0" path="res://Empieza aqui/Assets/ParedIzquierda.tres" id="2_1e5d8"]
 [ext_resource type="PackedScene" uid="uid://c6mp2krjan05d" path="res://Tutorial_completo/Trigger/triggerH.tscn" id="2_hlr47"]
-[ext_resource type="Script" uid="uid://cddhuti42ixwq" path="res://Tutorial_completo/MainLevel/CameraFollow.gd" id="3_x6mtg"]
+[ext_resource type="BoxMesh" uid="uid://dbed36rb4r4ob" path="res://Empieza aqui/Assets/Techo.tres" id="3_g37th"]
+[ext_resource type="Script" uid="uid://7jgp78t6a5ww" path="res://Tutorial_completo/MainLevel/CameraFollow.gd" id="3_x6mtg"]
 [ext_resource type="PackedScene" uid="uid://b286rdft4msb3" path="res://Tutorial_completo/Player/Player.tscn" id="4_j84c4"]
-[ext_resource type="Script" uid="uid://cit3uhdnwmrbd" path="res://Tutorial_completo/MainLevel/LightFollow.gd" id="5_ebu0q"]
+[ext_resource type="BoxMesh" uid="uid://dn42gwwswubf7" path="res://Empieza aqui/Assets/Piso.tres" id="4_lq73w"]
+[ext_resource type="Script" uid="uid://cnljukurbyffg" path="res://Tutorial_completo/MainLevel/LightFollow.gd" id="5_ebu0q"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_resii"]
 size = Vector3(1, 18, 5)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_resii"]
-albedo_color = Color(0.164706, 0.235294, 0.176471, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_resii"]
-material = SubResource("StandardMaterial3D_resii")
-size = Vector3(1, 18, 5)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xxkvx"]
-albedo_color = Color(0.164706, 0.235294, 0.176471, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_7s8pb"]
-material = SubResource("StandardMaterial3D_xxkvx")
-size = Vector3(30, 4, 5)
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_of3ke"]
 size = Vector3(20, 1, 5)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7s8pb"]
-albedo_color = Color(0.117647, 0.129412, 0.168627, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_of3ke"]
-material = SubResource("StandardMaterial3D_7s8pb")
-size = Vector3(30, 4, 5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xxkvx"]
 size = Vector3(20, 1, 5)
@@ -75,7 +57,7 @@ shape = SubResource("BoxShape3D_resii")
 
 [node name="RightMesh" type="MeshInstance3D" parent="Walls"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.5, 9, 0)
-mesh = SubResource("BoxMesh_resii")
+mesh = ExtResource("2_1e5d8")
 
 [node name="LeftWall" type="CollisionShape3D" parent="Walls"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5031, 9, 0)
@@ -83,14 +65,14 @@ shape = SubResource("BoxShape3D_resii")
 
 [node name="LeftMesh" type="MeshInstance3D" parent="Walls"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5031, 9, 0)
-mesh = SubResource("BoxMesh_resii")
+mesh = ExtResource("2_1e5d8")
 
 [node name="Ceiling" type="StaticBody3D" parent="."]
 transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 0, 18, 0)
 
 [node name="CeilingMesh" type="MeshInstance3D" parent="Ceiling"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
-mesh = SubResource("BoxMesh_7s8pb")
+mesh = ExtResource("3_g37th")
 skeleton = NodePath("../../Walls")
 
 [node name="CeilingShape" type="CollisionShape3D" parent="Ceiling"]
@@ -101,7 +83,7 @@ shape = SubResource("BoxShape3D_of3ke")
 
 [node name="FloorMesh" type="MeshInstance3D" parent="Floor"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
-mesh = SubResource("BoxMesh_of3ke")
+mesh = ExtResource("4_lq73w")
 skeleton = NodePath("../../Walls")
 
 [node name="FloorShape" type="CollisionShape3D" parent="Floor"]
