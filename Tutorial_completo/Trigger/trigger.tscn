@@ -1,13 +1,13 @@
 [gd_scene load_steps=4 format=3 uid="uid://c6mp2krjan05d"]
 
-[ext_resource type="Script" uid="uid://b84k6xmj1gyiv" path="res://Tutorial_completo/Trigger/triggerH.gd" id="1_c4sfi"]
+[ext_resource type="Script" uid="uid://bwk5qm1xojrnw" path="res://Tutorial_completo/Trigger/trigger.gd" id="1_c4sfi"]
 [ext_resource type="CylinderMesh" uid="uid://b40j5ybvmowgh" path="res://Empieza aqui/Assets/Palo.tres" id="2_vdsck"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_of3ke"]
 height = 20.0
 radius = 1.5
 
-[node name="TriggerH" type="Area3D"]
+[node name="Trigger" type="Area3D"]
 script = ExtResource("1_c4sfi")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
