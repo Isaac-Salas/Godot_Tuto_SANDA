@@ -1,14 +1,14 @@
 [gd_scene load_steps=15 format=3 uid="uid://cmklh5ifakw10"]
 
-[ext_resource type="Script" uid="uid://b8q13tgbumdmd" path="res://Tutorial_completo/MainLevel/main.gd" id="1_2i5ab"]
+[ext_resource type="Script" uid="uid://bj6ah80d0luq3" path="res://Tutorial_completo/MainLevel/main.gd" id="1_2i5ab"]
 [ext_resource type="BoxMesh" uid="uid://bnjxhv5xromj0" path="res://Empieza aqui/Assets/ParedIzquierda.tres" id="2_1e5d8"]
 [ext_resource type="PackedScene" uid="uid://c6mp2krjan05d" path="res://Tutorial_completo/Trigger/trigger.tscn" id="2_hlr47"]
 [ext_resource type="Shape3D" uid="uid://bkj3shjyrm1g7" path="res://Empieza aqui/Assets/Colisiones/pared_shape.tres" id="2_lq73w"]
 [ext_resource type="BoxMesh" uid="uid://dbed36rb4r4ob" path="res://Empieza aqui/Assets/Techo.tres" id="3_g37th"]
-[ext_resource type="Script" uid="uid://ctvaw8y00l3f" path="res://Tutorial_completo/MainLevel/CameraFollow.gd" id="3_x6mtg"]
+[ext_resource type="Script" uid="uid://bam5jrfo0281u" path="res://Tutorial_completo/MainLevel/CameraFollow.gd" id="3_x6mtg"]
 [ext_resource type="PackedScene" uid="uid://b286rdft4msb3" path="res://Tutorial_completo/Player/Player.tscn" id="4_j84c4"]
 [ext_resource type="BoxMesh" uid="uid://dn42gwwswubf7" path="res://Empieza aqui/Assets/Piso.tres" id="4_lq73w"]
-[ext_resource type="Script" uid="uid://d1kiuhnogtlu1" path="res://Tutorial_completo/MainLevel/LightFollow.gd" id="5_ebu0q"]
+[ext_resource type="Script" uid="uid://bjmq27gesrdav" path="res://Tutorial_completo/MainLevel/LightFollow.gd" id="5_ebu0q"]
 [ext_resource type="Shape3D" uid="uid://cuwp5yt6gad06" path="res://Empieza aqui/Assets/Colisiones/piso_shape.tres" id="6_a4xct"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_of3ke"]
@@ -42,8 +42,9 @@ volumetric_fog_length = 126.33
 volumetric_fog_detail_spread = 3.13834
 volumetric_fog_sky_affect = 0.174
 
-[node name="Tutorial" type="Node3D"]
+[node name="Tutorial" type="Node3D" node_paths=PackedStringArray("Obstaculos")]
 script = ExtResource("1_2i5ab")
+Obstaculos = NodePath("Center")
 
 [node name="Walls" type="StaticBody3D" parent="."]
 
@@ -90,8 +91,10 @@ shape = ExtResource("6_a4xct")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9, 0)
 
 [node name="TriggerV" parent="Center" instance=ExtResource("2_hlr47")]
+value = 1
 
 [node name="TriggerH" parent="Center" instance=ExtResource("2_hlr47")]
+value = 1
 type = 1
 
 [node name="Player" parent="." instance=ExtResource("4_j84c4")]
