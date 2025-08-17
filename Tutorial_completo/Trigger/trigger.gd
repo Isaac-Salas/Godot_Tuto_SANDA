@@ -8,8 +8,10 @@ signal deSpawn(value)
 # 				= 0 		= 1
 
 func _ready() -> void:
-	
-	# desplazar vertical
+	rand_start_position()
+
+func rand_start_position():
+		# desplazar vertical
 	if type == 0:
 		position.y = randf_range(-7.5, 7.5)
 	
@@ -32,5 +34,5 @@ func _physics_process(delta: float) -> void:
 	
 	#cuando el jugador lo esquive, se regresa, y aumenta los puntos
 	if position.z > 6:
-		_ready()
+		rand_start_position()
 		deSpawn.emit(value)
